@@ -3,7 +3,7 @@ package bitarray_test
 import (
 	"testing"
 
-	"github.com/saphal1998/bloomf/bitarray"
+	"github.com/saphal1998/bitarray"
 )
 
 func TestBitArraySize(t *testing.T) {
