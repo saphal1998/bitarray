@@ -1,6 +1,7 @@
 package bitarray
 
 import (
+	"bytes"
 	"errors"
 )
 
@@ -12,6 +13,7 @@ type BitArray interface {
 	Get(idx int) (bool, error)
 	Size() int
 	Toggle(idx int) error
+	UnsafeRawBuffer() []byte
 }
 
 type bitarray struct {
@@ -79,6 +81,10 @@ func (b *bitarray) Get(idx int) (bool, error) {
 	correct_bit := byte(0b10000000 >> reminder)
 
 	return (correct_blob & correct_bit) != byte(0), nil
+}
+
+func (b *bitarray) UnsafeRawBuffer() []byte {
+	return bytes.Clone(b.buffer)
 }
 
 func NewBitArray(size int) BitArray {
